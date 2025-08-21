@@ -1,0 +1,60 @@
+@charset "UTF-8";
+@font-face {
+    font-family: 'DesignHouse';
+    font-weight: 700;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/designhouse/DesignHouseBold.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/designhouse/DesignHouseBold.eot?#iefix') format('embedded-opentype'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/designhouse/DesignHouseBold.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/designhouse/DesignHouseBold.woff') format('woff'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/designhouse/DesignHouseBold.ttf') format("truetype");
+    font-display: swap;
+}  
+
+div {
+	font-family: 'DesignHouse';
+}
+
+div.tab{
+	background-color: rgb(244, 244, 244);
+    display:block;
+    height:100%;
+} 
+
+div.tab>ul{
+	background-color: rgb(244, 244, 244);
+	width:60%;
+	margin-left: 17%;
+	margin-top:0px;
+    display: table;
+  	table-layout:fixed;
+ 	list-style:none;
+}
+
+div.tab>ul>li{
+    display: table-cell;
+    text-align: center;
+}
+div.tab>ul>li:hover{
+	background-color: rgb(194, 194, 194);
+}
+
+div.tab>ul>li>a{
+	height:100%;
+	display: block;
+  	border: 1px none;
+  	font-size: 30px;
+    text-decoration: none;
+    
+}
+div.tab>ul>li>a:hover{
+    font-weight:bolder;
+}
+
+div.tab>ul.communitytab{
+   display:none;
+}
+
+div.tab>ul.myinfotab{
+   display:none;
+}

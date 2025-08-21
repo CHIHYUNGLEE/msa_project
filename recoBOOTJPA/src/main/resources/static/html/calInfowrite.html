@@ -1,0 +1,49 @@
+ <!--캘린더 추가등록 페이지입니다. -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8"> <!--html에서 없으면 글씨 깨짐   -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>calInfowrite.html</title>
+	<link href="./css/calInfowrite.css" rel=stylesheet>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="./js/calInfowrite.js"></script> <!-- 팝업창으로 할거면 점(.)이 2 개 -->
+
+	
+
+</head>
+	<script>
+	$(function(){		
+		
+	     /*--캘린더 추가 등록버튼이 클릭되었을때 START--*/
+		 addCalSubmit();
+	     /*--캘린더 추가 등록버튼이 클릭되었을때 END--*/
+	     
+	   });
+	</script>
+	
+	            
+	<fieldset> <!-- 팝업창으로 안하면 action="./caladd" -->
+	    <form  method="post"  autocomplete="off" enctype="multipart/form-data">
+	        
+	        <div class="input_image">
+	         	<strong>대표사진 추가(컴퓨터에서 불러오기)</strong><br>
+	         	<input type="file" name="calThumbnail" id="upload_file" accept="image/*" required>
+	        	
+	        </div><br>
+	        
+	        <div class="input_text">
+	        	<strong>캘린더 이름 입력 </strong><br>
+	        	<input type="text" name="calCategory" id="input" placeholder="캘린더 이름을 입력해주세요." required>
+	        </div><br>
+	        
+			<div class="bt"> 
+				<!-- <button type="submit" onclick="opener.parent.location.reload();">등록</button> -->
+		        <button type="submit" >등록</button>
+		        <!-- <button type="button" onclick="self.close()">취소</button> -->
+		        <button type="button" value="Back" onClick="history.go(0)" >취소</button>
+			</div>
+	    </form>
+	</fieldset>
+
+</html>

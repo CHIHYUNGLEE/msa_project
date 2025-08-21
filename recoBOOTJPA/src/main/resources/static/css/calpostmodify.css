@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+section{
+  margin: 0 auto;
+}
+
+form {
+	
+}
+
+
+body {
+	font-size : 14pt;
+	font-family : 맑은고딕;
+	color : "#3333333";
+	
+}
+
+table {
+	width : 200px;
+	border-collapse:collapse; /*셀간격을없앰*/
+	margin-left:25%;
+}
+th,td {
+	border : 3px solid #cccccc;
+	padding : 10px;
+	width : 100px;
+}

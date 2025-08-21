@@ -1,0 +1,60 @@
+@charset "UTF-8";
+@import url("base.css");
+
+div.container{
+	height : 800px;
+	margin: 0px auto;
+}
+
+/* 로그인창 */
+div.login {
+  height: 500px;
+  width: 400px;
+  border:rgb(192, 192, 192) 2px solid;
+  margin-top: 30px; 
+  text-align:center;
+  margin-left:38%;
+}
+
+/* 이메일 비밀번호 입력란 */
+input{
+  text-align: center;
+}
+
+
+/* 로그인버튼 */
+div.login_form>button.loginBt{
+	border: rgb(192, 192, 192) 1px solid;
+	border-radius: 3px;
+	font-size: 15px;
+  	color: white;
+  	width: 80px;
+	background-color:  rgb(91, 173, 255);
+}
+
+/* 로그인 제외한 나머지 버튼 */
+div.login_other>button{
+  border: rgb(192, 192, 192) 1px solid;
+  padding-left:10px;
+  border-radius: 3px;
+  width: 115px;
+  font-size: 15px;
+  color: white;
+  background-color: rgb(91, 173, 255);
+}
+
+
+/* a herf 밑줄 제거 */
+a{
+  text-decoration-line: none;
+  color: black;
+}
+
+
+div.login {
+     border-radius: 5px;
+     background-color: #f2f2f2;
+     /* padding: 20px; */
+     /* display: list-item; */
+     text-align:center;
+ }

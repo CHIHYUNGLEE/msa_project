@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+div.findEmail{
+	margin: 30px;
+}
+
+div.CNSend{
+	display:none;
+}
+
+div.findEmail>div.CNSend>input[name=email]{
+	display:none;
+}
+
