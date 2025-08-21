@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.reco.notice.NoticeMapper">
+
+	<select id="findCount" resultType="int">
+		select COUNT(*) from notice
+	</select>
+	<select id="findCountNickname" resultType="int" parameterType="string">
+		SELECT COUNT(*) FROM notice where NTC_UNICKNAME = #{word}
+	</select>
+	<select id="findCountWord"  resultType="int" parameterType="string">
+		SELECT COUNT(*) FROM notice where ntc_title like '%${word}%' or ntc_content like '%${word}%'
+	</select>
+	
+	<select id="findCountTitle"  resultType="int" parameterType="string">
+		SELECT COUNT(*) FROM notice where ntc_title like '%${word}%'
+	</select>
+	
+	<select id="findNtcAll" resultType="Notice" parameterType="map">
+		select *
+		from (select rownum r, a.*
+	     	 from (select ntc_idx,ntc_title,ntc_attachment,ntc_createat,ntc_unickname,ntc_views 
+					from notice order by ntc_idx desc) a
+	    )
+	    where r between start_row(#{currentPage},#{cntperpage}) and end_row(#{currentPage},#{cntperpage})
+	</select>
+	
+	<insert id="addNtc" parameterType="Notice">
+		insert into notice(ntc_idx,ntc_title,ntc_content,ntc_attachment,ntc_unickname,ntc_views) 
+		values(ntc_idx.nextval,#{ntcTitle},#{ntcContent},#{ntcAttachment},#{ntcUNickName},0)
+		
+		<selectKey  keyProperty="ntcIdx" resultType="int" order="AFTER">
+			select ntc_idx.currval FROM dual
+		</selectKey>
+	</insert> 
+	<select id="findNtcByNickname" parameterType="map" resultType="Notice">
+		select *
+		from (select rownum r, a.*
+	     	  from (select ntc_idx,ntc_unickname,ntc_attachment,ntc_title,ntc_createat 
+					from notice where NTC_UNICKNAME=#{uNickname} order by notice.ntc_idx desc) a
+	    )
+	    where r between start_row(#{currentPage},#{cntperpage}) and end_row(#{currentPage},#{cntperpage})
+	</select>
+	
+	<select id="findNtcByIdx" parameterType="int" resultType="Notice">
+		select * from notice where ntc_idx=#{ntcIdx}
+	</select>
+	
+	<select id="findNtcByTitle" parameterType="map" resultType="Notice">
+		select *
+		from (select rownum r, a.*
+	     	  from (select ntc_idx,ntc_unickname,ntc_title,ntc_createat 
+					from notice where ntc_title like '%${word}%' ) a
+	    )
+	    where r between start_row(#{currentPage},#{cntperpage}) and end_row(#{currentPage},#{cntperpage})
+	</select>
+	
+	<select id="findNtcByWord" parameterType="map" resultType="Notice">
+		
+		select *
+		from (select rownum r, a.*
+	     	  from (select ntc_idx,ntc_unickname,ntc_title,ntc_createat 
+					from notice where ntc_title like '%${word}%' or ntc_content like '%${word}%' ) a
+	    )
+	    where r between start_row(#{currentPage},#{cntperpage}) and end_row(#{currentPage},#{cntperpage})
+	</select>
+	
+	<update id="modifyNtc" parameterType="Notice">
+<!--		update notice 
+		set ntc_title=#{ntcTitle},ntc_content=#{ntcContent},
+		    ntc_attachment=#{ntcAttachment} where ntc_idx=#{ntcIdx}-->
+		update notice 
+		<set>
+		ntc_title=#{ntcTitle},ntc_content=#{ntcContent}
+			<if test="ntcAttachment != null">
+				, ntc_attachment=#{ntcAttachment}
+			</if>
+		</set>
+		where ntc_idx=#{ntcIdx}
+	</update>
+	
+	<delete id="removeNtc" parameterType="int">
+		delete from notice where ntc_idx=#{ntcIdx}
+	</delete>
+
+	<update id="plusViewCount" parameterType="int">
+		UPDATE notice set NTC_views = NTC_VIEWS+1 where ntc_Idx=#{ntcIdx}
+	</update>
+	
+	<delete id="removeNtcAllFromDB" parameterType="String">
+		delete FROM notice WHERE NTC_UNICKNAME=#{uNickname}
+	</delete>
+	
+</mapper>
+
